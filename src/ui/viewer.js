@@ -82,6 +82,7 @@ var Viewer = exports.Viewer = Widget.extend({
         this.hideTimerDfd = null;
         this.hideTimerActivity = null;
         this.mouseDown = false;
+        this.window = options.window
         this.render = function (annotation) {
             if (annotation.text) {
                 return util.escapeHtml(annotation.text);
@@ -372,7 +373,7 @@ var Viewer = exports.Viewer = Widget.extend({
                     .toArray();
 
                 // Now show the viewer with the wanted annotations
-                self.load(annotations, util.mousePosition(event));
+                self.load(annotations, util.mousePosition(event, self.window));
             });
     },
 

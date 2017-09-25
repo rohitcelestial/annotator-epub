@@ -36,8 +36,8 @@ var gettext = (function () {
 // Returns the absolute position of the mouse relative to the top-left rendered
 // corner of the page (taking into account padding/margin/border on the body
 // element as necessary).
-function mousePosition(event) {
-    var body = global.document.body;
+function mousePosition(event, iFrameDoc) {
+    var body = iFrameDoc.document.body;
     var offset = {top: 0, left: 0};
 
     if ($(body).css('position') !== "static") {

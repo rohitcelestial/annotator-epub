@@ -45,8 +45,8 @@ function TextSelector(element, options) {
 }
 
 TextSelector.prototype.destroy = function () {
-    if (this.document) {
-        $(this.document.body).off("." + TEXTSELECTOR_NS);
+    if (options.window.document) {
+        $(options.window.document.body).off("." + TEXTSELECTOR_NS);
     }
 };
 

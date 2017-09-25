@@ -229,7 +229,8 @@ function main(options) {
         s.adder = new adder.Adder({
             onCreate: function (ann) {
                 app.annotations.create(ann);
-            }
+            },
+            appendTo: options.window.document.body
         });
         s.adder.attach();
 
@@ -246,12 +247,13 @@ function main(options) {
             onSelection: function (ranges, event) {
                 if (ranges.length > 0) {
                     var annotation = makeAnnotation(ranges);
-                    s.interactionPoint = util.mousePosition(event);
+                    s.interactionPoint = util.mousePosition(event, options.window);
                     s.adder.load(annotation, s.interactionPoint);
                 } else {
                     s.adder.hide();
                 }
-            }
+            },
+            window: options.window
         });
 
         s.viewer = new viewer.Viewer({
@@ -272,7 +274,9 @@ function main(options) {
                 return authz.permits('delete', ann, ident.who());
             },
             autoViewHighlights: options.element,
-            extensions: options.viewerExtensions
+            extensions: options.viewerExtensions,
+            appendTo: options.window.document.body,
+            window: options.window
         });
         s.viewer.attach();
 
