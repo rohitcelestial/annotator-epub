@@ -235,7 +235,8 @@ function main(options) {
         s.adder.attach();
 
         s.editor = new editor.Editor({
-            extensions: options.editorExtensions
+            extensions: options.editorExtensions,
+            appendTo: options.window.document.body
         });
         s.editor.attach();
 
